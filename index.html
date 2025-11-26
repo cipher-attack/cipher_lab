@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="am">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#00f2ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="./manifest.json" />
+    <title>Cipher_AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                900: 'var(--bg-primary)', 
+                800: 'var(--bg-secondary)',
+                700: 'var(--bg-tertiary)',
+                600: 'var(--border-color)',
+                accent: 'var(--accent-color)', 
+                purple: '#bc13fe', 
+                danger: '#ff2a6d',
+                success: '#05d5fa',
+                text: 'var(--text-primary)',
+                subtext: 'var(--text-secondary)'
+              }
+            },
+            fontFamily: {
+              mono: ['"Fira Code"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+              sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            },
+            animation: {
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'slide-up': 'slideUp 0.3s ease-out forwards',
+              'float': 'float 6s ease-in-out infinite',
+              'scan': 'scan 3s linear infinite',
+              'fall': 'fall 0.6s cubic-bezier(0.75, 0, 1, 1) forwards',
+              'shatter-l': 'shatterLeft 0.5s ease-out forwards',
+              'shatter-r': 'shatterRight 0.5s ease-out forwards',
+            },
+            keyframes: {
+              glow: {
+                '0%': { boxShadow: '0 0 5px var(--accent-color)' },
+                '100%': { boxShadow: '0 0 20px var(--accent-color), 0 0 10px #bc13fe' },
+              },
+              slideUp: {
+                '0%': { opacity: 0, transform: 'translateY(10px)' },
+                '100%': { opacity: 1, transform: 'translateY(0)' },
+              },
+              scan: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100%)' },
+              },
+              fall: {
+                '0%': { transform: 'translateY(0)' },
+                '100%': { transform: 'translateY(200px)' }
+              },
+              shatterLeft: {
+                '0%': { transform: 'translate(0, 200px) rotate(0)', opacity: 1 },
+                '100%': { transform: 'translate(-50px, 250px) rotate(-45deg)', opacity: 0 }
+              },
+              shatterRight: {
+                '0%': { transform: 'translate(0, 200px) rotate(0)', opacity: 1 },
+                '100%': { transform: 'translate(50px, 250px) rotate(45deg)', opacity: 0 }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@300;400;700;900&display=swap');
+
+      :root {
+        /* Dark Mode (Default) */
+        --bg-primary: #050508;
+        --bg-secondary: #0e0e16;
+        --bg-tertiary: #1a1a2e;
+        --border-color: #2d2d44;
+        --accent-color: #00f2ff;
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+      }
+
+      body.light-mode {
+        /* Light Mode (Lab Clean) */
+        --bg-primary: #f8fafc;
+        --bg-secondary: #ffffff;
+        --bg-tertiary: #e2e8f0;
+        --border-color: #cbd5e1;
+        --accent-color: #0284c7; /* Darker Blue for visibility */
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        overscroll-behavior-y: none; /* Prevent pull-to-refresh on mobile PWA */
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-primary); 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-color); 
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color); 
+      }
+
+      /* Glitch Effect Class */
+      .glitch-active {
+        animation: glitch-anim 0.3s infinite;
+        color: #ff2a6d;
+        text-shadow: 2px 0 var(--accent-color), -2px 0 #bc13fe;
+        transform: skewX(-10deg);
+      }
+
+      @keyframes glitch-anim {
+        0% { transform: translate(0) }
+        20% { transform: translate(-2px, 2px) }
+        40% { transform: translate(-2px, -2px) }
+        60% { transform: translate(2px, 2px) }
+        80% { transform: translate(2px, -2px) }
+        100% { transform: translate(0) }
+      }
+
+      /* Syntax Highlighting Colors */
+      .token-keyword { color: #bc13fe; font-weight: bold; } 
+      .token-string { color: var(--accent-color); } 
+      .token-function { color: #ffd700; } 
+      .token-comment { color: #6b7280; font-style: italic; } 
+      
+      /* Markdown Styles */
+      .markdown-content h1 { font-size: 1.5rem; font-weight: 900; color: var(--accent-color); margin-bottom: 0.5rem; margin-top: 1rem; }
+      .markdown-content h2 { font-size: 1.25rem; font-weight: 700; color: #bc13fe; margin-bottom: 0.5rem; margin-top: 0.8rem; }
+      .markdown-content h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem; }
+      .markdown-content p { margin-bottom: 0.75rem; line-height: 1.6; color: var(--text-primary); }
+      .markdown-content strong { color: var(--text-primary); font-weight: 700; }
+      .markdown-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+      .markdown-content li { margin-bottom: 0.25rem; }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>

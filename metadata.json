@@ -1,0 +1,5 @@
+{
+  "name": "CyberSec EduLab",
+  "description": "An interactive educational platform demonstrating 5 core cybersecurity projects: Phishing, Password Strength, SQL Injection, Encryption, and Firewall Logic. Includes AI-powered explanations.",
+  "requestFramePermissions": []
+}

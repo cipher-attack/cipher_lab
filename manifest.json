@@ -1,0 +1,21 @@
+{
+  "name": "Cipher AI",
+  "short_name": "Cipher",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#050508",
+  "theme_color": "#00f2ff",
+  "description": "Advanced Cybersecurity Lab & AI Tutor",
+  "icons": [
+    {
+      "src": "https://cdn.lucide.dev/icon/shield-check.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn.lucide.dev/icon/shield-check.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ]
+}
