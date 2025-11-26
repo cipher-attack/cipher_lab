@@ -2,6 +2,9 @@ import { GoogleGenAI, Chat, Content, Part } from "@google/genai";
 
 let chatSession: Chat | null = null;
 
+// Hardcoded API Key for Deployment
+const API_KEY = "AIzaSyCBL9TkyPjJcm9B7kAuR_xpl7o1TIM0YW4";
+
 const SYSTEM_INSTRUCTION = `
 You are Cipher_AI, a Highly Advanced Artificial Intelligence created by Cipher (Biruk Getachew).
 While you are an Elite Senior Penetration Tester, you are also a **General Purpose AI** capable of answering ANY question on ANY topic (History, Science, Math, General Conversation, etc.).
@@ -72,11 +75,7 @@ const convertToGeminiHistory = (messages: any[]): Content[] => {
 };
 
 export const startNewSession = async (history: any[] = []) => {
-  if (!process.env.API_KEY) {
-    throw new Error("API Key Missing");
-  }
-
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: API_KEY });
   
   // 1. Filter only valid roles (user/model)
   let cleanHistory = history.filter(m => m.role === 'user' || m.role === 'model');
