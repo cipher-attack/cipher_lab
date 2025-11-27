@@ -3,7 +3,7 @@ import { GoogleGenAI, Chat, Content, Part } from "@google/genai";
 let chatSession: Chat | null = null;
 
 // Hardcoded API Key for Deployment
-const API_KEY = "AIzaSyCBL9TkyPjJcm9B7kAuR_xpl7o1TIM0YW4";
+const API_KEY = "AIzaSyCbflTNj_aE-PhZFcLtg15qeZUZ-dD6Cts";
 
 const SYSTEM_INSTRUCTION = `
 You are Cipher_AI, a Highly Advanced Artificial Intelligence created by Cipher (Biruk Getachew).
